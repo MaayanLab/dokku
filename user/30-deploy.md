@@ -18,3 +18,21 @@ git push -u production main
 # configure https support for your app (only after first deploy)
 dokku letsencrypt:enable my-app
 ```
+
+## Updating your deployment
+
+With your github repo setup, after making new commits you can update the dokku deployment by simply running
+```bash
+git push -u production main
+```
+
+## Rolling back your deployment
+
+If you broke something and want to rollback, you can use git for this
+```bash
+# checkout the working code (e.g. HEAD~1 would be the last commit, alternatively locate the commit hash of the working code)
+git checkout <working-commit>
+git push -u production main --force
+# go back to main
+git checkout main
+```

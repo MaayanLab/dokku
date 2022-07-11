@@ -9,6 +9,7 @@ chapters:
   - file: user/10-access
   - file: user/20-setup
   - file: user/30-deploy
+  - file: user/40-manage
 - file: administration/index
   sections:
   - file: administration/10-infrastructure
