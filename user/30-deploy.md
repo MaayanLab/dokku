@@ -36,3 +36,13 @@ git push -u production main --force
 # go back to main
 git checkout main
 ```
+
+## Deploying a docker image directly from dockerhub (Advanced)
+
+<https://dokku.com/docs/deployment/methods/git/#initializing-an-app-repository-from-a-docker-image>
+
+Dokku can initialize the git repo for you if all you want to do is deploy an existing docker image on dockerhub. After creating the app it's:
+
+```bash
+dokku git:from-image my-app dockerhuborg/some-docker-image
+```
