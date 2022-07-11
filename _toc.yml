@@ -1,0 +1,16 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: README
+chapters:
+- file: user/index
+  sections:
+  - file: user/10-access
+  - file: user/20-setup
+  - file: user/30-deploy
+- file: administration/index
+  sections:
+  - file: administration/10-infrastructure
+  - file: administration/20-install
+  - file: administration/30-users
