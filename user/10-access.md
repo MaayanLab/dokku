@@ -2,9 +2,12 @@
 
 Dokku is ultimately an ssh server, dokku commands run on that server over ssh and git push happens over ssh as well. To securely access an ssh server, you need an ssh key-pair which comes with a private and public part. The public part can be shared with others and ensures your identity can be verified (given that you're the only holder of the private key).
 
-For management simplicity, we expect your public key to be associated with your github account, that way we can easily pull the key from there. For more information about associating an ssh key with your github account, see [github's docs on the subject](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+For management simplicity, we expect your public key to be associated with your github account, that way we can easily pull the key from there. For more information about associating an ssh key with your github account.
 
 ## Generating a ssh key-pair
+
+<https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>
+
 Only necessary if you haven't already done this, it is reasonable to reuse an existing ssh key-pair.
 
 In your terminal:
