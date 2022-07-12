@@ -1,4 +1,4 @@
-# User administration
+# User Administration
 ```bash
 dokku ssh-keys:add username [path_to_key]
 dokku ssh-keys:list

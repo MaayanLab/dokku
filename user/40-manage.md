@@ -1,4 +1,4 @@
-# Manage Dokku deployments
+# Manage Dokku Deployments
 
 The following Dokku docs should prove helpful for managing dokku deployments:
 
