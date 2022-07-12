@@ -1,4 +1,4 @@
-# Ma'ayanlab Dokku Server
+# Ma'ayan Lab Dokku Server
 
 Currently running at <https://dokku.lincs-dcic.org/>.
 
