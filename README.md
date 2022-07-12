@@ -1,6 +1,6 @@
 # Ma'ayan Lab Dokku Server
 
-Currently running at <https://dokku.lincs-dcic.org/>.
+Currently running at <https://dokku.maayanlab.cloud/>.
 
 ## What is Dokku
 
