@@ -1,4 +1,4 @@
-# Administration
+# Introduction
 
 This section of the docs covers the server-side administration of dokku.
 

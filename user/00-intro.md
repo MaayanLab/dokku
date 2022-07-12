@@ -1,4 +1,4 @@
-# User Guide
+# Introduction
 
 This section of the docs covers the user-side usage of the public dokku server. It assumes the user has been given access to a given dokku server by an administrator.
 

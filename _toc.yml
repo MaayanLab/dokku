@@ -3,15 +3,10 @@
 
 format: jb-book
 root: README
-chapters:
-- file: user/index
-  sections:
-  - file: user/10-access
-  - file: user/20-setup
-  - file: user/30-deploy
-  - file: user/40-manage
-- file: administration/index
-  sections:
-  - file: administration/10-infrastructure
-  - file: administration/20-install
-  - file: administration/30-users
+parts:
+- caption: User Guide
+  chapters:
+  - glob: user/*
+- caption: Administration
+  chapters:
+  - glob: administration/*
