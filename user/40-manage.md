@@ -2,10 +2,10 @@
 
 The following Dokku docs should prove helpful for managing dokku deployments:
 
-- <https://dokku.com/docs/deployment/application-management/>
-- <https://dokku.com/docs/deployment/logs/>
-- <https://dokku.com/docs/processes/entering-containers/>
-- <https://dokku.com/docs/processes/process-management/>
+- [application-management](https://dokku.com/docs/deployment/application-management/)
+- [logs](https://dokku.com/docs/deployment/logs/)
+- [entering-containers](https://dokku.com/docs/processes/entering-containers/)
+- [process-management](https://dokku.com/docs/processes/process-management/)
 
 ## Setup terminal
 
