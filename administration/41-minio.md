@@ -1,12 +1,15 @@
 # MinIO (S3)
+
 [MinIO](https://min.io/) offers open source S3 compatible object storage, thier solution is very advanced and can scale the way AWS native S3 can across many nodes, alternatively it works just as well on a single system with the added benefit of coming with a easy-to-use user interface that can also be used to manage access controls.
 
 MinIO is launchable with docker and can thus be served on dokku, though some tweaks/configuration are necessary.
 
-## MinIO S3 Server
+## MinIO S3 server
+
 MinIO's docker image is good to go, though we can bake in some convenient augmentations including the fixed console-address port, unprivileged user, and data directory.
 
-### Source Code
+### Source code
+
 The following source code is available as an archive at {downloads}`dokku-minio-console.tar.gz` for installation convenience.
 
 Create a git repo directory `minio` and add the following file:
@@ -25,7 +28,8 @@ Create a git repo directory `minio` and add the following file:
   CMD ["server", "--console-address", ":9001", "/home/dokku/data"]
   ```
 
-### Dokku Install
+### Dokku install
+
 ```bash
 # create and configure minio
 dokku app:create minio
@@ -56,10 +60,12 @@ dokku nginx:set minio client-max-body-size 5G
 dokku proxy:build-config minio
 ```
 
-## MinIO Web Console Proxy
+## MinIO web console proxy
+
 Exposing the minio console (served on port 9001) externally can be done with an app which proxies to it (even though it's served by the `minio` image). nginx can be used for this purpose:
 
-### Source Code
+### Source code
+
 The following source code is available as an archive at {downloads}`dokku-minio-console.tar.gz` for installation convenience.
 
 Create a git repo directory `minio-console` and add the following file(s):
@@ -105,7 +111,8 @@ Create a git repo directory `minio-console` and add the following file(s):
   EXPOSE 5000
   ```
 
-### Dokku Install
+### Dokku install
+
 ```bash
 # configure minio-console app
 dokku app:create minio-console

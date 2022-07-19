@@ -4,7 +4,6 @@ Here we walk through the basics of creating an app in dokku and pushing your app
 
 For more information, see the [application-deployment](https://dokku.com/docs/deployment/application-deployment/) docs on dokku.
 
-
 ```bash
 # maybe you want to add this to your .bashrc (replace dokku.maayanlab.cloud with the domain name)
 alias dokku="ssh -t dokku@dokku.maayanlab.cloud"

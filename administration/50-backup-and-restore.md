@@ -1,4 +1,5 @@
 # Backup and Restoration
+
 [Restic](https://restic.net/) is a fast and versitile tool with first-class support for multi-threading and can backup to any target whether it's a local disk, sftp, s3 or some arbitrary rclone backend. Backed up files are de-duplicated at a chunk-level and stored by content hash providing easy integrity checking. For more information, see the restic docs.
 
 As long as important files are kept in the dokku prescribed places, everything can be easily restored, those places are:
@@ -11,6 +12,7 @@ As long as important files are kept in the dokku prescribed places, everything c
 ## Backup
 
 ### Configuring Backup Target
+
 ```bash
 export AWS_ACCESS_KEY_ID=<access_key_id>
 export AWS_SECRET_ACCESS_KEY=<secret_access_key>
@@ -19,6 +21,7 @@ export RESTIC_PASSWORD=<encryption_password>
 ```
 
 ### Initializing a Backup Repository
+
 ```bash
 # initialize backup repository **first time run only**
 restic init
@@ -39,11 +42,13 @@ restic check --read-data-subset=1/20
 ## Restoration
 
 ### Listing snapshots
+
 ```bash
 restic snapshots
 ```
 
 ### Review backups through mount
+
 ```bash
 mkdir -p /mnt/restic
 restic mount /mnt/restic
@@ -55,6 +60,7 @@ ls /mnt/restic
 ```
 
 ### Restore from a backup in-place (Not Recommended)
+
 ```bash
 restic restore <snapshot-id> --target /
 ```
