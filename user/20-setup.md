@@ -71,6 +71,7 @@ We use gunicorn to serve the flask app in production instead of the app itself w
 
   # add source to app
   COPY . /app
+  WORKDIR /app
 
   # the port your app uses -- this is essential for dokku deployment
   EXPOSE 5000
