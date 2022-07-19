@@ -6,7 +6,7 @@ dokku ssh-keys:remove username
 ```
 
 ## Managing users using github pubkeys
-These functions were added to a script {download}`dokku-github-keys.sh` which can be installed on the host serving dokku for convenience.
+These functions were added to a script {downloads}`dokku-github-keys.sh` which can be installed on the host serving dokku for convenience.
 
 ```bash
 # github.com serves user public keys, so we can just fetch them from there by github username

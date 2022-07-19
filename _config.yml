@@ -27,3 +27,13 @@ html:
   use_repository_button: true
   use_edit_page_button: true
   extra_navbar: ""
+
+sphinx:
+  extra_extensions:
+    - sphinx.ext.extlinks
+  config:
+    # all files in _assets will be placed in the root, including the downloads directory
+    html_extra_path: [_assets]
+    # this sets up a sphinx role: {downloads}`my-file-in-downloads`
+    extlinks:
+      downloads: ['/downloads/%s', '%s']
