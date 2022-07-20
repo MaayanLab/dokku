@@ -4,3 +4,4 @@ Applications should typically be stateless, but naturally applications will inev
 
 - [MinIO (s3)](./41-minio.md)
 - [PostgreSQL (RDMS)](./42-postgres.md)
+- [MariaDB (RDMS)](./43-mariadb.md)
