@@ -59,6 +59,6 @@ conn.close()
 ## Exporting from dokku mariadb
 
 ```bash
-# data in a dokku database can also be exported similarly to pg_dump
+# data in a dokku database can also be exported similarly to mysqldump
 dokku mariadb:export <db-name> > db.dump
 ```

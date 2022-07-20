@@ -58,6 +58,6 @@ graph = Graph(NEO4J_URL)
 ## Exporting from dokku neo4j
 
 ```bash
-# data in a dokku database can also be exported similarly to pg_dump
+# data in a dokku database can also be exported similarly to neo4j-admin dump
 dokku neo4j:export <db-name> > db.dump
 ```
