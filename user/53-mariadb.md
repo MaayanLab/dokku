@@ -1,4 +1,4 @@
-# MariaDB
+# MariaDB (RDMS)
 
 Dokku has official support for [mariadb](https://mariadb.org/), a good and mature open source relational database and drop-in replacement for MySQL. The [dokku plugin](https://github.com/dokku/dokku-mariadb) for this is well documented. It can be used to launch & manage databases and link them to apps.
 

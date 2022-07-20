@@ -1,4 +1,4 @@
-# Neo4J
+# Neo4J (GraphDB)
 
 We repurposed the dokku postgres plugin for neo4j [here](https://github.com/maayanlab/dokku-neo4j), the README has additional documentation. It can be used to launch & manage databases and link them to apps.
 

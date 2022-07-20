@@ -1,4 +1,4 @@
-# MariaDB
+# MariaDB (RDMS)
 
 Dokku has official support for [dokku-mariadb](https://github.com/dokku/dokku-mariadb), this plugin is well documented and can be used to launch databases and link them to apps.
 

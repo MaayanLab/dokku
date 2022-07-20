@@ -1,4 +1,4 @@
-# PostgreSQL
+# PostgreSQL (RDMS)
 
 Dokku has official support for [dokku-postgres](https://github.com/dokku/dokku-postgres), this plugin is well documented and can be used to launch databases and link them to apps.
 
