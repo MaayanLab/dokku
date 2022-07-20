@@ -14,9 +14,13 @@ As long as important files are kept in the dokku prescribed places, everything c
 ### Configuring Backup Target
 
 ```bash
+# AWS account with read/write permissions to the bucket
+#  only necessary if using aws s3
 export AWS_ACCESS_KEY_ID=<access_key_id>
 export AWS_SECRET_ACCESS_KEY=<secret_access_key>
+# actual repository
 export RESTIC_REPOSITORY=s3:s3.amazonaws.com/<some-bucket>/dokku-backup/
+# some secure password to use for encrypting the backups, save somewhere else
 export RESTIC_PASSWORD=<encryption_password>
 ```
 
@@ -29,15 +33,44 @@ restic init
 
 ### Creating regular backups
 
-This should be done as part of a cron-job, perhaps daily or weekly.
+This should be done as part of a daily/weekly cron-job.
 
-```bash
-# create a backup
-restic backup /home/dokku /var/lib/dokku/config /var/lib/dokku/data /var/lib/dokku/services /var/lib/dokku/plugins
-# check a random 5% of all data integrity to identify corrupt backups before they become a problem
-restic check --read-data-subset=1/20
-# see restic docs for `restic forget` which can be used to prune backups
-```
+- `/root/dokku-backup.sh`
+  ```bash
+  #!/bin/bash
+
+  # TODO: fill in from before
+  export AWS_ACCESS_KEY_ID=
+  export AWS_SECRET_ACCESS_KEY=
+  export RESTIC_REPOSITORY=
+  export RESTIC_PASSWORD=
+
+  # backup relevant directories
+  restic backup \
+    /home/dokku \
+    /var/lib/dokku/config \
+    /var/lib/dokku/data \
+    /var/lib/dokku/services \
+    /var/lib/dokku/plugins
+
+  # prune backups on a schedule
+  restic forget \
+    --prune \
+    --keep-last 10 \
+    --keep-daily 7 \
+    --keep-weekly 4 \
+    --keep-monthly 12 \
+    --keep-yearly 5
+
+  # check for integrity issues on random subset
+  restic check \
+    --read-data-subset=1/20
+  ```
+- `sudo crontab -e`
+  ```crontab
+  # daily at 3am
+  0 3 * * * /root/dokku-backup.sh
+  ```
 
 ## Restoration
 
