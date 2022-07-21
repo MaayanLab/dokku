@@ -12,14 +12,18 @@ It is ideal to include a `.env.example` file in your repo, potentially with comm
 
 Packages exist for loading environment variables from `.env` automatically like the `python-dotenv` package.
 
+## Setup terminal
+
+As in the deployment phase, dokku commands can be setup with
+```bash
+alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
+```
+
 ## Environment variables on Dokku
 
 When you launch your app on dokku, adding the environment configuration is an additional step:
 
 ```bash
-# maybe you want to add this to your .bashrc (replace dokku.maayanlab.cloud with the domain name)
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
-
 # replace my-app with your app name
 #  each environment KEY=VALUE pair can be provided on the args
 # this will apply the config and restart your app

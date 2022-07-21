@@ -4,10 +4,16 @@ Here we walk through the basics of creating an app in dokku and pushing your app
 
 For more information, see the [application-deployment](https://dokku.com/docs/deployment/application-deployment/) docs on dokku.
 
-```bash
-# maybe you want to add this to your .bashrc (replace dokku.maayanlab.cloud with the domain name)
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
+## Setup terminal
 
+As in the deployment phase, dokku commands can be setup with
+```bash
+alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
+```
+
+## Deploying
+
+```bash
 # configure your app on dokku (replace my-app with your app name)
 dokku apps:create my-app
 
