@@ -58,6 +58,8 @@ dokku proxy:ports-set minio https:443:9000 http:9001:9001
 # increase client-max-body-size for upload limits
 dokku nginx:set minio client-max-body-size 5G
 dokku proxy:build-config minio
+# review configuration including user/password
+dokku config:show minio
 ```
 
 ## MinIO web console proxy
