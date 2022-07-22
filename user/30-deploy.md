@@ -25,6 +25,10 @@ git remote add production dokku@dokku.maayanlab.cloud:my-app
 #  including posibly an error message if something went wrong.
 git push -u production main
 
+# overwrite any broken proxy config dokku inferred (replace 5000 with the port your container serves on)
+dokku proxy:clear-config my-app
+dokku proxy:proxy-set my-app 'http:80:5000'
+
 # configure https support for your app (only necessary after first deploy)
 dokku letsencrypt:enable my-app
 ```
