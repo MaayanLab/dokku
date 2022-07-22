@@ -69,7 +69,7 @@ This should be done as part of a daily/weekly cron-job.
 - `sudo crontab -e`
   ```crontab
   # daily at 3am
-  0 3 * * * /root/dokku-backup.sh
+  0 3 * * * systemd-cat -t "dokku-backup" /root/dokku-backup.sh
   ```
 
 ## Restoration
