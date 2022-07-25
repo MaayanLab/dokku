@@ -16,7 +16,11 @@ alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
 ```bash
 # configure your app on dokku (replace my-app with your app name)
 dokku apps:create my-app
+```
 
+### From Git Repository
+
+```bash
 # configure your codebase for pushing to dokku
 #  must be executed in the directory of your repository
 git remote add production dokku@dokku.maayanlab.cloud:my-app
@@ -24,7 +28,26 @@ git remote add production dokku@dokku.maayanlab.cloud:my-app
 # push app to dokku, you should see messages about the deployment
 #  including posibly an error message if something went wrong.
 git push -u production main
+```
 
+Proceed with finalizing the deployment.
+
+### Directly from dockerhub (Advanced)
+
+For more information, see [dokku's docs](https://dokku.com/docs/deployment/methods/git/#initializing-an-app-repository-from-a-docker-image) on the subject.
+
+Dokku can initialize the git repo for you if all you want to do is deploy an existing docker image on dockerhub. After creating the app it's:
+
+```bash
+# replace my-app and org/image with the app name and docker image respectively
+dokku git:from-image my-app org/image
+```
+
+Proceed with finalizing the deployment.
+
+## Finalizing the deployment
+
+```bash
 # overwrite any broken proxy config dokku inferred (replace 5000 with the port your container serves on)
 dokku proxy:clear-config my-app
 dokku proxy:proxy-set my-app 'http:80:5000'
@@ -49,14 +72,4 @@ git checkout <working-commit>
 git push -u production main --force
 # go back to main
 git checkout main
-```
-
-## Deploying a docker image directly from dockerhub (Advanced)
-
-For more information, see [dokku's docs](https://dokku.com/docs/deployment/methods/git/#initializing-an-app-repository-from-a-docker-image) on the subject.
-
-Dokku can initialize the git repo for you if all you want to do is deploy an existing docker image on dockerhub. After creating the app it's:
-
-```bash
-dokku git:from-image my-app dockerhuborg/some-docker-image
 ```
