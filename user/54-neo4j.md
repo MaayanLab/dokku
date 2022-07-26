@@ -30,6 +30,16 @@ neo4j-admin dump --to=- > db.dump
 dokku neo4j:import <db-name> < db.dump
 ```
 
+### Dumping from a dockerized neo4j database
+
+Neo4j dump command only works when the database is not running, so you must first stop the container then use the dump command. For a docker-compose setup it looks like:
+
+```bash
+docker-compose stop neo4j
+docker-compose run neo4j neo4j-admin dump --to=- > db.dump
+docker-compose start neo4j
+```
+
 ## Linking the database to your app
 
 ```bash
