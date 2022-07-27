@@ -51,8 +51,8 @@ The following source code is available as an archive at {downloads}`dokku-neo4j-
 - `neo4j/entrypoint.sh`
   ```bash
   #!/bin/bash
-  # we extract the ...@(hostname):1234 part and make NGINX_UPSTREAM=hostname:
-  NGINX_UPSTREAM_HOSTNAME=$(gawk '{ match($0, /@([^@:]+?):[0-9]+$/, m); print m[1] })
+  # we extract the ...@(hostname):1234 part of NEO4J_URL and make NGINX_UPSTREAM=hostname:
+  NGINX_UPSTREAM_HOSTNAME=$(gawk '{ match($0, /@([^@:]+?):[0-9]+$/, m); print m[1] }' <<< "$NEO4J_URL")
   NGINX_UPSTREAM_PORT="${NGINX_UPSTREAM_PORT:-7474}"
   export NGINX_UPSTREAM="${NGINX_UPSTREAM_HOSTNAME}:${NGINX_UPSTREAM_PORT}"
   "$@"
