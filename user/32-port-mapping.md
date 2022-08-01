@@ -2,13 +2,6 @@
 
 After creating your app, it's possible that either dokku didn't auto-detect the ports properly or the port has changed. In this case, it will be necessary to fallback to manual port mapping.
 
-## Setup terminal
-
-As in the deployment phase, dokku commands can be setup with
-```bash
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
-```
-
 ## Show existing ports
 
 ```bash

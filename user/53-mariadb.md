@@ -2,13 +2,6 @@
 
 Dokku has official support for [mariadb](https://mariadb.org/), a good and mature open source relational database and drop-in replacement for MySQL. The [dokku plugin](https://github.com/dokku/dokku-mariadb) for this is well documented. It can be used to launch & manage databases and link them to apps.
 
-## Setup terminal
-
-As in the deployment phase, dokku commands can be setup with
-```bash
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
-```
-
 ## Creating a database for your app
 
 ```bash

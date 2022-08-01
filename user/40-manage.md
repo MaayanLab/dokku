@@ -7,13 +7,6 @@ The following Dokku docs should prove helpful for managing dokku deployments:
 - [entering-containers](https://dokku.com/docs/processes/entering-containers/)
 - [process-management](https://dokku.com/docs/processes/process-management/)
 
-## Setup terminal
-
-As in the deployment phase, dokku commands can be setup with
-```bash
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
-```
-
 ## Logging
 
 ```bash

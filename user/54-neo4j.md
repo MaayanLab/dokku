@@ -2,13 +2,6 @@
 
 [Neo4J](https://neo4j.com/) is an open source and enterprise graph database. We repurposed the dokku postgres plugin for neo4j [here](https://github.com/maayanlab/dokku-neo4j), the README has additional documentation. It can be used to launch & manage databases and link them to apps.
 
-## Setup terminal
-
-As in the deployment phase, dokku commands can be setup with
-```bash
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
-```
-
 ## Creating a database for your app
 
 ```bash
