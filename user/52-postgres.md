@@ -2,13 +2,6 @@
 
 Dokku has official support for [postgres](https://www.postgresql.org/), a good and mature open source relational database. The [dokku plugin](https://github.com/dokku/dokku-postgres) for this is well documented. It can be used to launch & manage databases and link them to apps.
 
-## Setup terminal
-
-As in the deployment phase, dokku commands can be setup with
-```bash
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
-```
-
 ## Creating a database for your app
 
 ```bash

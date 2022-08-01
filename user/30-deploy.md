@@ -4,13 +4,6 @@ Here we walk through the basics of creating an app in dokku and pushing your app
 
 For more information, see the [application-deployment](https://dokku.com/docs/deployment/application-deployment/) docs on dokku.
 
-## Setup terminal
-
-As in the deployment phase, dokku commands can be setup with
-```bash
-alias dokku="ssh -t dokku@dokku.maayanlab.cloud"
-```
-
 ## Deploying
 
 ```bash
@@ -23,7 +16,7 @@ dokku apps:create my-app
 ```bash
 # configure your codebase for pushing to dokku
 #  must be executed in the directory of your repository
-git remote add production dokku@dokku.maayanlab.cloud:my-app
+git remote add production dokku.maayanlab.cloud:my-app
 
 # push app to dokku, you should see messages about the deployment
 #  including posibly an error message if something went wrong.
