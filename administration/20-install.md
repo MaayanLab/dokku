@@ -139,6 +139,7 @@ In a cloud environment and on a dedicated system, this part is not necessary, bu
     routers:
       # we'll let dokku handle tls
       dokku-https:
+        priority: 1
         rule: HostSNIRegexp(`dokku.maayanlab.cloud`, `{subdomain:.+}.dokku.maayanlab.cloud`)
         entryPoints:
           - websecure
@@ -147,6 +148,7 @@ In a cloud environment and on a dedicated system, this part is not necessary, bu
           passthrough: true
       # only necessary if doing ssh-over-tls -- do tls termination to the ssh port
       dokku-ssh:
+        priority: 0
         rule: HostSNI(`ssh.dokku.maayanlab.cloud`)
         entryPoints:
           - websecure
