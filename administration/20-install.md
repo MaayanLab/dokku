@@ -18,14 +18,61 @@ sudo apt install git vagrant virtualbox
 # virtualbox patch
 sudo mkdir -p /etc/vbox
 sudo tee networks.conf <<< "* 0.0.0.0/0 ::/0"
-
+# useful vagrant plugin for managing disk size
+vagrant plugin install vagrant-disksize
+# get dokku
 git clone https://github.com/dokku/dokku.git
 cd dokku
+```
 
+Apply the following patch to the Vagrantfile for easy disk resizing:
+
+```diff
+--- Vagrantfile.old     2022-08-02 11:28:19.247438313 -0400
++++ Vagrantfile 2022-08-02 12:11:50.112665016 -0400
+@@ -4,6 +4,7 @@
+ BOX_NAME = ENV["BOX_NAME"] || "bento/ubuntu-18.04"
+ BOX_CPUS = ENV["BOX_CPUS"] || "1"
+ BOX_MEMORY = ENV["BOX_MEMORY"] || "1024"
++BOX_DISKSIZE = ENV["BOX_DISKSIZE"] || "64GB"
+ DOKKU_DOMAIN = ENV["DOKKU_DOMAIN"] || "dokku.me"
+ DOKKU_IP = ENV["DOKKU_IP"] || "10.0.0.2"
+ FORWARDED_PORT = (ENV["FORWARDED_PORT"] || '8080').to_i
+@@ -15,10 +16,18 @@
+   make_cmd = "PREBUILT_STACK_URL='#{PREBUILT_STACK_URL}' #{make_cmd}"
+ end
+ 
++disk_resize = <<-SCRIPT
++sudo parted /dev/sda resizepart 1 100%
++sudo pvresize /dev/sda1
++sudo lvextend -l +100%FREE /dev/vagrant-vg/root
++sudo resize2fs /dev/vagrant-vg/root
++SCRIPT
++
+ Vagrant::configure("2") do |config|
+   config.ssh.forward_agent = true
+ 
+   config.vm.box = BOX_NAME
++  config.disksize.size = BOX_DISKSIZE
+ 
+   config.vm.provider :virtualbox do |vb|
+     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+@@ -55,6 +64,7 @@
+       vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+     end
+ 
++    vm.vm.provision :shell, :run => 'always', :inline => disk_resize
+     vm.vm.provision :shell, :inline => "export DEBIAN_FRONTEND=noninteractive && apt-get update -qq >/dev/null && apt-get -qq -y --no-install-recommends install git build-essential >/dev/null && cd /root/dokku && #{make_cmd}"
+     vm.vm.provision :shell do |s|
+       s.inline = <<-EOT
+```
+
+```bash
 # provision dokku with vagrant
 env \
   BOX_CPUS=4 \
   BOX_MEMORY=16384 \
+  BOX_DISKSIZE=64GB \
   DOKKU_IP=10.0.0.2 \
   DOKKU_DOMAIN=dokku.maayanlab.cloud \
   FORWARDED_PORT=8080 \
@@ -34,6 +81,10 @@ env \
 # login to dokku
 vagrant ssh
 ```
+
+### Resizing Disk
+
+The disk can be resized by running `vagrant halt` then the `env ... vagrant up` command again with the updated `BOX_DISKSIZE`.
 
 ## Baremetal Ingress
 
