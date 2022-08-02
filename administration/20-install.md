@@ -177,8 +177,8 @@ dokku domains:set-global dokku.maayanlab.cloud
 # use main instead of master
 dokku git:set --global deploy-branch main
 
-# setup letsencrypt
-sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+# setup traefik auto-tls w/ letsencrypt
+sudo dokku plugin:install https://github.com/maayanlab/dokku-traefik.git
 dokku config:set --global DOKKU_LETSENCRYPT_EMAIL=your_email@gmail.com
-dokku letsencrypt:cron-job --add
+dokku traefik:start
 ```

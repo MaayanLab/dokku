@@ -51,8 +51,8 @@ sudo chown 32769:32769 /var/lib/dokku/data/storage/minio
 dokku storage:mount minio /var/lib/dokku/data/storage/minio:/home/dokku/data
 # reconfigure port (use port 9000)
 dokku proxy:ports-set minio http:80:9000
-# ssl termination with letsencrypt
-dokku letsencrypt:enable minio
+# ssl termination with dokku-letsencrypt if required (not with traefik)
+#dokku letsencrypt:enable minio
 # update port mappings -- serve 9000 as minio, and 9001 internally
 dokku proxy:ports-set minio https:443:9000 http:9001:9001
 # increase client-max-body-size for upload limits
@@ -122,8 +122,8 @@ dokku app:create minio-console
 dokku git:from-archive minio-console https://dokku.maayanlab.cloud/downloads/dokku-minio-console.tar.gz
 # (or if working from local repo)
 #git push -u production
-# ssl termination with letsencrypt
-dokku letsencrypt:enable minio-console
+# ssl termination with dokku-letsencrypt if required (not with traefik)
+#dokku letsencrypt:enable minio-console
 # increase client-max-body-size for upload limits
 dokku nginx:set minio client-max-body-size 5G
 dokku proxy:build-config minio

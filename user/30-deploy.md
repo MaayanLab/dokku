@@ -45,8 +45,7 @@ Proceed with finalizing the deployment.
 dokku proxy:clear-config my-app
 dokku proxy:ports-set my-app 'http:80:5000'
 
-# configure https support for your app (only necessary after first deploy)
-dokku letsencrypt:enable my-app
+# your app is automatically deployed at https://my-app.dokku.maayanlab.cloud
 ```
 
 ## Updating your deployment

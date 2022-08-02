@@ -98,7 +98,8 @@ dokku neo4j:link my-neo4j-db my-ui-app
 dokku git:from-archive my-ui-app https://dokku.maayanlab.cloud/downloads/dokku-neo4j-proxy.tar.gz
 dokku proxy:clear-config my-ui-app
 dokku proxy:ports-set my-ui-app 'http:80:5000'
-dokku letsencrypt:enable my-ui-app
+# if dokku-letsencrypt is required (not with traefik)
+#dokku letsencrypt:enable my-ui-app
 
 # the app is now available at https://my-ui-app.dokku.maayanlab.cloud
 #  the credentials can be found from the NEO4J_URL
