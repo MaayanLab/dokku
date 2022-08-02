@@ -126,32 +126,38 @@ In a cloud environment and on a dedicated system, this part is not necessary, bu
       # forward http packets over to the dokku container to be handled
       dokku-http:
         rule: Host(`dokku.maayanlab.cloud`) || Host(`*.dokku.maayanlab.cloud`)
+        entryPoints:
+          - web
         service: dokku-http
     services:
       dokku-http:
         loadBalancer:
           servers:
-          # this is the DOKKU_IP specified in the vagrant install
-          - url: "http://10.0.0.2/"
+            # this is the DOKKU_IP specified in the vagrant install
+            - url: "http://10.0.0.2:80/"
   tcp:
     routers:
       # we'll let dokku handle tls
       dokku-https:
-        rule: HostSNI(`dokku.maayanlab.cloud`) || HostSNI(`*.dokku.maayanlab.cloud`)
+        rule: HostSNIRegexp(`dokku.maayanlab.cloud`, `{subdomain:.+}.dokku.maayanlab.cloud`)
+        entryPoints:
+          - websecure
         service: dokku-https
         tls:
           passthrough: true
       # only necessary if doing ssh-over-tls -- do tls termination to the ssh port
       dokku-ssh:
         rule: HostSNI(`ssh.dokku.maayanlab.cloud`)
+        entryPoints:
+          - websecure
         service: dokku-ssh
         tls: {}
     services:
       dokku-https:
         loadBalancer:
           servers:
-          # this is the DOKKU_IP specified in the vagrant install
-          - address: 10.0.0.2:443
+            # this is the DOKKU_IP specified in the vagrant install
+            - address: 10.0.0.2:443
       # only necessary if doing ssh-over-tls
       dokku-ssh:
         loadBalancer:
