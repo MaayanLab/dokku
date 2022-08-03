@@ -68,15 +68,17 @@ Apply the following patch to the Vagrantfile for easy disk resizing:
 ```
 
 ```bash
-# provision dokku with vagrant
-env \
-  BOX_CPUS=4 \
-  BOX_MEMORY=16384 \
-  BOX_DISKSIZE=64GB \
-  DOKKU_IP=10.0.0.2 \
-  DOKKU_DOMAIN=dokku.maayanlab.cloud \
-  FORWARDED_PORT=8080 \
-  vagrant up
+# add confit to .env
+cat > .env <<EOF
+BOX_CPUS=4
+BOX_MEMORY=16384
+BOX_DISKSIZE=64GB
+DOKKU_IP=10.0.0.2
+DOKKU_DOMAIN=dokku.maayanlab.cloud
+EOF
+
+# provision dokku with vagrant (dotenv loads env from .env -- this is installable with "pip install python-dotenv[cli]")
+dotenv run vagrant up
 
 # login to dokku
 vagrant ssh
@@ -84,9 +86,9 @@ vagrant ssh
 
 ### Resizing Disk
 
-The disk can be resized by running `vagrant halt` then the `env ... vagrant up` command again with the updated `BOX_DISKSIZE`.
+The disk can be resized by running `vagrant halt` then the `dotenv run vagrant up` command again after updating `BOX_DISKSIZE` in `.env`.
 
-## Baremetal Ingress
+### Baremetal Ingress
 
 In a cloud environment and on a dedicated system, this part is not necessary, but on a system which serves other things an ingress is essential. The simplest way to setup an ingress to serve this and other things is with traefik in a docker-compose. This lets us expose multiple http services on the one port differentiated by the hostname, and can be used for ssh over tls if that is necessary.
 
