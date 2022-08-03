@@ -46,3 +46,27 @@ tcp:
 EOF
 ```
 
+## Root redirect
+
+It's convenient to run the docs on a subdomain, i.e. `dokku.dev.maayanlab.cloud` but it would be good for the root domain to point somewhere. A root redirect from `dev.maayanlab.cloud => dokku.dev.maayanlab.cloud` can be setup as follows:
+
+```bash
+sudo -u dokku cat > /var/lib/dokku/services/traefik/config/root-redirect.yaml <<EOF
+http:
+  routers:
+    dev-maayanlab-cloud:
+      rule: Host(`dev.maayanlab.cloud`)
+      entryPoints:
+        - websecure
+      middlewares:
+        - dev-maayanlab-cloud-redirect
+      service: noop@internal
+      tls:
+        certResolver: letsencrypt
+  middlewares:
+    dev-maayanlab-cloud-redirect:
+      redirectRegex:
+        regex: "^http(s?)://dev.maayanlab.cloud/(.*)"
+        replacement: "http${1}://dokku.dev.maayanlab.cloud/${2}"
+EOF
+```
