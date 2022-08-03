@@ -1,6 +1,6 @@
 # Ma'ayan Lab Dokku Server
 
-Currently running at <https://dokku.maayanlab.cloud/>.
+Currently running at <https://dokku.dev.maayanlab.cloud/>.
 
 This repository contains documentation for the Ma'ayan Lab Dokku Server. Files are just markdown, and [jupyter-book](https://jupyterbook.org/) is used to turn them into a webpage.
 

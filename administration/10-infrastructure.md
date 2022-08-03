@@ -21,8 +21,8 @@ A hostname should be configured along with a wildcard CNAME record:
 
 ```raw
 record_type   name                      value
-A             dokku.maayanlab.cloud     your.host.ip.addr
-CNAME         *.dokku.maayanlab.cloud   dokku.maayanlab.cloud
+A             dev.maayanlab.cloud     your.host.ip.addr
+CNAME         *.dev.maayanlab.cloud   dev.maayanlab.cloud
 ```
 
-This is convenient as apps will be mounted at `app.dokku.maayanlab.cloud`
+This is convenient as apps will be mounted at `app.dev.maayanlab.cloud`

@@ -74,7 +74,7 @@ BOX_CPUS=4
 BOX_MEMORY=16384
 BOX_DISKSIZE=64GB
 DOKKU_IP=10.0.0.2
-DOKKU_DOMAIN=dokku.maayanlab.cloud
+DOKKU_DOMAIN=dev.maayanlab.cloud
 EOF
 
 # provision dokku with vagrant (dotenv loads env from .env -- this is installable with "pip install python-dotenv[cli]")
@@ -127,7 +127,7 @@ In a cloud environment and on a dedicated system, this part is not necessary, bu
     routers:
       # forward http packets over to the dokku container to be handled
       dokku-http:
-        rule: Host(`dokku.maayanlab.cloud`) || Host(`*.dokku.maayanlab.cloud`)
+        rule: Host(`dev.maayanlab.cloud`) || Host(`*.dev.maayanlab.cloud`)
         entryPoints:
           - web
         service: dokku-http
@@ -141,7 +141,7 @@ In a cloud environment and on a dedicated system, this part is not necessary, bu
     routers:
       # we'll let dokku handle tls
       dokku-https:
-        rule: HostSNIRegexp(`dokku.maayanlab.cloud`, `{subdomain:.+}.dokku.maayanlab.cloud`)
+        rule: HostSNIRegexp(`dev.maayanlab.cloud`, `{subdomain:.+}.dev.maayanlab.cloud`)
         entryPoints:
           - websecure
         service: dokku-https
@@ -158,7 +158,7 @@ In a cloud environment and on a dedicated system, this part is not necessary, bu
 
 ```bash
 # setup domain name
-dokku domains:set-global dokku.maayanlab.cloud
+dokku domains:set-global dev.maayanlab.cloud
 
 # use main instead of master
 dokku git:set --global deploy-branch main

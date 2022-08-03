@@ -90,18 +90,18 @@ The following source code is available as an archive at {downloads}`dokku-neo4j-
 
 ### Dokku install
 
-`my-ui-app` should be replaced with your app name, it will be the public-facing neo4j UI which will be accessed at `my-ui-app.dokku.maayanlab.cloud`. `my-neo4j-db` is the neo4j database created previously.
+`my-ui-app` should be replaced with your app name, it will be the public-facing neo4j UI which will be accessed at `my-ui-app.dev.maayanlab.cloud`. `my-neo4j-db` is the neo4j database created previously.
 
 ```bash
 dokku apps:create my-ui-app
 dokku neo4j:link my-neo4j-db my-ui-app
-dokku git:from-archive my-ui-app https://dokku.maayanlab.cloud/downloads/dokku-neo4j-proxy.tar.gz
+dokku git:from-archive my-ui-app https://dokku.dev.maayanlab.cloud/downloads/dokku-neo4j-proxy.tar.gz
 dokku proxy:clear-config my-ui-app
 dokku proxy:ports-set my-ui-app 'http:80:5000'
 # if dokku-letsencrypt is required (not with traefik)
 #dokku letsencrypt:enable my-ui-app
 
-# the app is now available at https://my-ui-app.dokku.maayanlab.cloud
+# the app is now available at https://my-ui-app.dev.maayanlab.cloud
 #  the credentials can be found from the NEO4J_URL
 dokku config:show my-ui-app
 ```

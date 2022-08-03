@@ -29,7 +29,7 @@ On github, in Settings > Access > SSH and GPG keys, add New SSH Key, and paste t
 
 ## Request access from an administrator
 
-The lab administrator of dokku can, using your github username, give you access to dokku. A command they run will authorize your github public key allowing you to run dokku commands on the server and push to it. You will also receive the dokku domain name, e.g. `dokku.maayanlab.cloud` -- this is where you will push and apps will automatically be visible at `<app-name>.dokku.maayanlab.cloud`.
+The lab administrator of dokku can, using your github username, give you access to dokku. A command they run will authorize your github public key allowing you to run dokku commands on the server and push to it. You will also receive the dokku domain name, e.g. `dev.maayanlab.cloud` -- this is where you will push and apps will automatically be visible at `<app-name>.dev.maayanlab.cloud`.
 
 ## Configure access
 
@@ -39,8 +39,8 @@ Note: This script writes it directly to `.ssh/config`, alternatively you can mod
 
 ```bash
 cat >> ~/.ssh/config << EOF
-Host dokku.maayanlab.cloud
-  ProxyCommand openssl s_client -connect ssh.dokku.maayanlab.cloud:443 -quiet
+Host dev.maayanlab.cloud
+  ProxyCommand openssl s_client -connect ssh.dev.maayanlab.cloud:443 -quiet
   IdentityFile ~/.ssh/id_rsa
   IdentitiesOnly yes
   User dokku
@@ -50,7 +50,7 @@ EOF
 Next you'll want to make sure you always have access to the `dokku` command, you can do so by adding an alias to your `.bashrc` which runs on terminal startup.
 
 ```bash
-echo 'alias dokku="ssh -t dokku.maayanlab.cloud"' >> ~/.bashrc
+echo 'alias dokku="ssh -t dev.maayanlab.cloud"' >> ~/.bashrc
 ```
 
 ## Verify access

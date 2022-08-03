@@ -31,7 +31,7 @@ sudo -u dokku cat > /var/lib/dokku/services/traefik/config/ssh-passthrough.yaml 
 tcp:
   routers:
     dokku-ssh:
-      rule: HostSNI(`ssh.dokku.maayanlab.cloud`)
+      rule: HostSNI(`ssh.dev.maayanlab.cloud`)
       entryPoints:
         - websecure
       service: dokku-ssh

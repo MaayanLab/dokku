@@ -37,12 +37,12 @@ dokku app:create minio
 dokku config:set --no-restart minio MINIO_ACCESS_KEY=$(echo `openssl rand -base64 45` | tr -d \=+ | cut -c 1-20)
 dokku config:set --no-restart minio MINIO_SECRET_KEY=$(echo `openssl rand -base64 45` | tr -d \=+ | cut -c 1-32)
 # configure
-dokku config:set --no-restart minio MINIO_SERVER_URL=https://minio.dokku.maayanlab.cloud
-dokku config:set --no-restart minio MINIO_BROWSER_REDIRECT_URL=https://minio-console.dokku.maayanlab.cloud
-dokku config:set --no-restart minio MINIO_DOMAIN=minio.dokku.maayanlab.cloud
+dokku config:set --no-restart minio MINIO_SERVER_URL=https://minio.dev.maayanlab.cloud
+dokku config:set --no-restart minio MINIO_BROWSER_REDIRECT_URL=https://minio-console.dev.maayanlab.cloud
+dokku config:set --no-restart minio MINIO_DOMAIN=minio.dev.maayanlab.cloud
 dokku config:set --no-restart minio CONSOLE_SECURE_TLS_REDIRECT="off"
 # push-to-deploy minio to dokku
-dokku git:from-archive minio https://dokku.maayanlab.cloud/downloads/dokku-minio.tar.gz
+dokku git:from-archive minio https://dokku.dev.maayanlab.cloud/downloads/dokku-minio.tar.gz
 # (or if working from local repo)
 #git push -u production
 # persistent storage
@@ -119,7 +119,7 @@ Create a git repo directory `minio-console` and add the following file(s):
 # configure minio-console app
 dokku app:create minio-console
 # push-to-deploy minio-console to dokku
-dokku git:from-archive minio-console https://dokku.maayanlab.cloud/downloads/dokku-minio-console.tar.gz
+dokku git:from-archive minio-console https://dokku.dev.maayanlab.cloud/downloads/dokku-minio-console.tar.gz
 # (or if working from local repo)
 #git push -u production
 # ssl termination with dokku-letsencrypt if required (not with traefik)

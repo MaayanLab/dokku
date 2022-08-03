@@ -16,7 +16,7 @@ dokku apps:create my-app
 ```bash
 # configure your codebase for pushing to dokku
 #  must be executed in the directory of your repository
-git remote add production dokku.maayanlab.cloud:my-app
+git remote add production dev.maayanlab.cloud:my-app
 
 # push app to dokku, you should see messages about the deployment
 #  including posibly an error message if something went wrong.
@@ -45,7 +45,7 @@ Proceed with finalizing the deployment.
 dokku proxy:clear-config my-app
 dokku proxy:ports-set my-app 'http:80:5000'
 
-# your app is automatically deployed at https://my-app.dokku.maayanlab.cloud
+# your app is automatically deployed at https://my-app.dev.maayanlab.cloud
 ```
 
 ## Updating your deployment

@@ -9,14 +9,14 @@ MinIO is the ideal place to store static files like data dumps which don't belon
 Files stored in minio which are configured to have public-read permissions are accessible at:
 
 - `s3://<bucket-name>/<file/path>`
-  - given that the endpoint is configured to https://minio.dokku.maayanlab.cloud
-- `https://minio.dokku.maayanlab.cloud/<bucket-name>/<file/path>`
+  - given that the endpoint is configured to https://minio.dev.maayanlab.cloud
+- `https://minio.dev.maayanlab.cloud/<bucket-name>/<file/path>`
 
 ## Getting access
 
 To get credentials for the minio server, contact an administrator to get access.
 
 The MinIO S3 server is available at:
-- https://minio.dokku.maayanlab.cloud
+- https://minio.dev.maayanlab.cloud
 
 Your web browser will redirect you to the console where you can loading and manage files. Alternatively most S3 compatible clients can access minio with the proper endpoint, for example [rclone](https://rclone.org/s3/).
