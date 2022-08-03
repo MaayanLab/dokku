@@ -21,3 +21,28 @@ dokku traefik:start
 ## Plugin Usage
 
 Apps can be manually added/removed with `dokku traefik:enable/disable <app>` and traefik's logs can be analysed with `dokku traefik:logs`.
+
+## SSH over HTTPS Passthrough
+
+If port 22 is not easily utilized, ssh can be used over https with an extra step on the user side of things. With the traefik plugin in place, an additional rule can be added. We perform TLS termination with traefik and forward decoded traffic to port 22. On the client side, a `openssl s_client` ProxyCommand can be used to leverage this for ssh.
+
+```bash
+sudo -u dokku cat > /var/lib/dokku/services/traefik/config/ssh-passthrough.yaml <<EOF
+tcp:
+  routers:
+    dokku-ssh:
+      rule: HostSNI(`ssh.dokku.maayanlab.cloud`)
+      entryPoints:
+        - websecure
+      service: dokku-ssh
+      tls:
+        certResolver: letsencrypt
+  services:
+    dokku-ssh:
+      loadBalancer:
+        servers:
+          # 172.17.0.1 is "localhost" (the actual system) when in docker
+          - address: 172.17.0.1:22
+EOF
+```
+
