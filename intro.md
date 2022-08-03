@@ -16,3 +16,12 @@ These opinionated docs try to capture the main parts necessary for administratio
 ## Contributions
 
 If you run into issues figuring out how to use dokku or there are gaps in these docs, do consider contributing to this user guide on github either by [submitting an issue](https://github.com/MaayanLab/dokku/issues) or by writing a [pull request](https://github.com/MaayanLab/dokku/pulls).
+
+## User Changelog
+
+The gist of the changes you should be aware of if you're coming from `dokku.maayanlab.cloud` are detailed here:
+
+- [Access docs](./user/10-access.html#configure-access) now require a additional config step, you'll need to review this
+  to access the new server.
+- [Configuring a repo](./user/30-deploy.html#from-git-repository) needs to use the new domain name. if you already have the `production` origin set up, you can change it with `git remote set-url production dev.maayanlab.cloud:my-app`
+- [Finalizing deployments](./user/30-deploy.html#finalizing-the-deployment) was simplified! `dokku letsencrypt:enable` is no longer needed, your app should be available at `https` automatically. When setting up the proxy, only specify `http:80:your-container-port`.
