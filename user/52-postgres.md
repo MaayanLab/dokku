@@ -17,7 +17,7 @@ dokku postgres:connect <db-name>
 ```bash
 # dump data from local database
 #  (NOTE: pg_dump likely requires additional parameters like the hostname, username & password to local db)
-pg_dump db_name > db.dump
+pg_dump -Fc --no-acl --no-owner -h localhost -U postgres -w db_name > db.dump
 
 # send dump to dokku database
 dokku postgres:import <db-name> < db.dump
