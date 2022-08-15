@@ -53,6 +53,8 @@ Next you'll want to make sure you always have access to the `dokku` command, you
 echo 'alias dokku="ssh -t dev.maayanlab.cloud"' >> ~/.bashrc
 ```
 
+**Note**: You'll need to restart your terminal before the bashrc alias is applied and the dokku command becomes available.
+
 ## Verify access
 
 Once you've been given access and have configured things, you can confirm that it's working with the dokku command:
