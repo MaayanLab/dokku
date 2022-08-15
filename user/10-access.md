@@ -40,7 +40,7 @@ Note: This script writes it directly to `.ssh/config`, alternatively you can mod
 ```bash
 cat >> ~/.ssh/config << EOF
 Host dev.maayanlab.cloud
-  ProxyCommand openssl s_client -connect ssh.dev.maayanlab.cloud:443 -quiet
+  ProxyCommand openssl s_client -servername ssh.dev.maayanlab.cloud -connect ssh.dev.maayanlab.cloud:443 -quiet
   IdentityFile ~/.ssh/id_rsa
   IdentitiesOnly yes
   User dokku
