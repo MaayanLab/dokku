@@ -50,7 +50,7 @@ EOF
 Next you'll want to make sure you always have access to the `dokku` command, you can do so by adding an alias to your `.bashrc` which runs on terminal startup.
 
 ```bash
-echo 'alias dokku="ssh -t dev.maayanlab.cloud"' >> ~/.bashrc
+echo 'alias dokku="ssh -T dev.maayanlab.cloud"' >> ~/.bashrc
 ```
 
 **Note**: You'll need to restart your terminal before the bashrc alias is applied and the dokku command becomes available.
