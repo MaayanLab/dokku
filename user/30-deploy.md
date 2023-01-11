@@ -44,6 +44,7 @@ Proceed with finalizing the deployment.
 # overwrite any broken proxy config dokku inferred (replace 5000 with the port your container serves on)
 dokku proxy:clear-config my-app
 dokku proxy:ports-set my-app 'http:80:5000'
+dokku traefik:enable my-app
 
 # your app is automatically deployed at https://my-app.dev.maayanlab.cloud
 ```

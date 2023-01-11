@@ -24,4 +24,4 @@ The gist of the changes you should be aware of if you're coming from `dokku.maay
 - [Access docs](./user/10-access.html#configure-access) now require a additional config step, you'll need to review this
   to access the new server.
 - [Configuring a repo](./user/30-deploy.html#from-git-repository) needs to use the new domain name. if you already have the `production` origin set up, you can change it with `git remote set-url production dev.maayanlab.cloud:my-app`
-- [Finalizing deployments](./user/30-deploy.html#finalizing-the-deployment) was simplified! `dokku letsencrypt:enable` is no longer needed, your app should be available at `https` automatically. When setting up the proxy, only specify `http:80:your-container-port`.
+- [Finalizing deployments](./user/30-deploy.html#finalizing-the-deployment) was simplified! `dokku letsencrypt:enable` was replaced with `dokku traefik:enable`. When setting up the proxy, only specify `http:80:your-container-port`.

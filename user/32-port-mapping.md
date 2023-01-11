@@ -12,11 +12,11 @@ Example:
 ```
 =====> minio-console proxy information
        Proxy enabled:                 true
-       Proxy port map:                http:80:80 https:443:80
+       Proxy port map:                http:80:80
        Proxy type:                    nginx
 ```
 
-The port maps follow the docker standard, `scheme:host-port:container-port` where the `scheme` tells dokku whether secure (https) or insecure traffic (http) should flow. `host port` is the entrypoint into the dokku server, it should be 80 for http or 443 for https. `container port` is the port the container serves on, common examples include 80, 5000, and 8080.
+The port maps follow the docker standard, `http:host-port:container-port`. `host port` is the entrypoint into the dokku server, it should be 80 for http. `container port` is the port the container serves on, common examples include 80, 5000, and 8080.
 
 ## Setting up port mappings
 
@@ -25,13 +25,18 @@ The port maps follow the docker standard, `scheme:host-port:container-port` wher
 dokku proxy:enable my-app
 
 # replace 5000 with the port your container is using
-dokku proxy:ports-set my-app http:80:5000 https:443:5000
+dokku proxy:ports-set my-app http:80:5000
 
 # rebuild the nginx configuration to reflect new port mappings
 dokku proxy:build-config my-app
 ```
 
-If things are still not working you might want to check the nginx config to verify it has your changes
+If things are still not working, maybe you forgot to run:
+```bash
+dokku traefik:enable my-app
+```
+
+which should be done when you create an app. Otherwise you might want to check the nginx config to verify it has your changes
 ```bash
 dokku nginx:show-config my-app
 ```
