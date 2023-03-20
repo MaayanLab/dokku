@@ -1,3 +1,7 @@
+```{warning}
+This is for maintainers of the dokku backend -- if you are a regular user of dokku, the information on this page is likely not useful for you, please don't attempt to run the commands stated in this section.
+```
+
 # Infrastructure for Dokku
 
 Dokku is just a program but must run on some system obviously. It's not a "real" production system since everything must run on one host, in practice it will probably become a mess as well. It is probably convenient for summer intern rapid deployment iterations, though perhaps just giving them a small dedicated cluster in rancher could work just as well.

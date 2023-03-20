@@ -1,3 +1,7 @@
+```{warning}
+This is for maintainers of the dokku backend -- if you are a regular user of dokku, the information on this page is likely not useful for you, please don't attempt to run the commands stated in this section.
+```
+
 # MariaDB (RDMS)
 
 Dokku has official support for [dokku-mariadb](https://github.com/dokku/dokku-mariadb), this plugin is well documented and can be used to launch databases and link them to apps.

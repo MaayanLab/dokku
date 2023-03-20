@@ -1,3 +1,7 @@
+```{warning}
+This is for maintainers of the dokku backend -- if you are a regular user of dokku, the information on this page is likely not useful for you, please don't attempt to run the commands stated in this section.
+```
+
 # Backup and Restoration
 
 [Restic](https://restic.net/) is a fast and versitile tool with first-class support for multi-threading and can backup to any target whether it's a local disk, sftp, s3 or some arbitrary rclone backend. Backed up files are de-duplicated at a chunk-level and stored by content hash providing easy integrity checking. For more information, see the restic docs.

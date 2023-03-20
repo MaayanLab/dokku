@@ -1,3 +1,7 @@
+```{warning}
+This is for maintainers of the dokku backend -- if you are a regular user of dokku, the information on this page is likely not useful for you, please don't attempt to run the commands stated in this section.
+```
+
 # Traefik Ingress for Dokku
 
 Dokku's default letsencrypt plugin leaves some things to be desired. One alternative would be to use traefik which is rapidly configured and can do letsencrypt ACME/TLS termination for us as well.

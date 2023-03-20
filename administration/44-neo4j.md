@@ -1,3 +1,7 @@
+```{warning}
+This is for maintainers of the dokku backend -- if you are a regular user of dokku, the information on this page is likely not useful for you, please don't attempt to run the commands stated in this section.
+```
+
 # Neo4J (GraphDB)
 
 We repurposed the dokku postgres plugin for neo4j [here](https://github.com/maayanlab/dokku-neo4j), the README has additional documentation. It can be used to launch & manage databases and link them to apps.

@@ -1,3 +1,7 @@
+```{warning}
+This is for maintainers of the dokku backend -- if you are a regular user of dokku, the information on this page is likely not useful for you, please don't attempt to run the commands stated in this section.
+```
+
 # Install Dokku Server
 
 Described in this article: <https://dokku.com/docs/getting-started/advanced-installation/> which points to system specific installation.
