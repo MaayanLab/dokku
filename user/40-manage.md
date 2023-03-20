@@ -40,11 +40,22 @@ dokku enter my-app
 ## Renaming an app
 
 ```bash
+# remove previous links if they are present
+dokku traefik:disable my-app-oldname
+#dokku neo4j:unlink db my-app-oldname
+#...
+
+# rename
 dokku apps:rename my-app-oldname my-app-newname
+
+# re-link
+dokku traefik:enable my-app-newname
+#dokku neo4j:link db my-app-newname
 ```
 
 ## Removing an app
 
 ```bash
+dokku traefik:disable my-app
 dokku apps:destroy my-app
 ```
