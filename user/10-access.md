@@ -47,7 +47,14 @@ Host dev.maayanlab.cloud
 EOF
 ```
 
-Next you'll want to make sure you always have access to the `dokku` command, you can do so by adding an alias to your `.bashrc` which runs on terminal startup.
+Next you'll want to make sure you always have access to the `dokku` command, you can do so by adding an alias to your shell.
+
+First, check which shell you're running:
+```sh
+echo $0
+```
+
+If the output is `/bin/bash` the following command should be used, if it's `/bin/zsh` you should use `~/.zshrc` rather than `~/.bashrc`.
 
 ```bash
 echo 'alias dokku="ssh dev.maayanlab.cloud"' >> ~/.bashrc
