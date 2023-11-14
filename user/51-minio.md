@@ -19,4 +19,4 @@ To get credentials for the minio server, contact an administrator to get access.
 The MinIO S3 server is available at:
 - https://minio.dev.maayanlab.cloud
 
-Your web browser will redirect you to the console where you can loading and manage files. Alternatively most S3 compatible clients can access minio with the proper endpoint, for example [rclone](https://rclone.org/s3/).
+Your web browser will redirect you to the console where you can upload and manage files. Alternatively most S3 compatible clients can access minio with the proper endpoint, for example [rclone](https://rclone.org/s3/).
