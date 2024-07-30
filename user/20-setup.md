@@ -4,9 +4,15 @@ Dokku can be used to deploy an app in several ways:
 - [A repository with Dockerfile](https://dokku.com/docs/deployment/builders/dockerfiles/) (Recommended)
 - [Heokuish Buldpack](https://dokku.com/docs/deployment/builders/herokuish-buildpacks/) (Recommended by dokku, but not by us)
 
+## Git Repository
+
+[Git & GitHub](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git) is used extensively by our lab is and is useful beyond dokku. Please ensure you have an account with GitHub and Git installed on your system.
+
+Your project should be version controlled with git which can be done, if it wasn't cloned already, by running `git init` in the directory of your project.
+
 ## Docker deployment
 
-[Docker](https://www.docker.com/) is used extensively by our lab and is useful beyond heroku, it allows you to prepare your app in a container which can be launched in a number of different platforms. Dokku will recognize a `Dockerfile` in the root of your repository and automatically build it and deploy it for you, thus ensuring your application will run as intended in production is a matter of constructing a Dockerfile.
+[Docker](https://www.docker.com/) is used extensively by our lab and is useful beyond dokku, it allows you to prepare your app in a container which can be launched in a number of different platforms. Dokku will recognize a `Dockerfile` in the root of your repository and automatically build it and deploy it for you, thus ensuring your application will run as intended in production is a matter of constructing a Dockerfile.
 
 With docker installed, you can build and test your own `Dockerfile` with:
 ```bash

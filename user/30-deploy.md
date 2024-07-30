@@ -23,6 +23,8 @@ git remote add production dev.maayanlab.cloud:my-app
 git push -u production main
 ```
 
+Having issues? Check out [common deployment issues and their solutions](./60-common-issues.md).
+
 Proceed with finalizing the deployment.
 
 ### Directly from dockerhub (Advanced)
