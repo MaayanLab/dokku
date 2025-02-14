@@ -30,3 +30,28 @@ dokku/test:latest: pull access denied, repository does not exist or may require 
 ```
 
 The actual issue is that you've probably built the image on a different platform. You should add the `--platform linux/amd64` flag to your `docker build` command.
+
+## "Failed to load database 'neo4j'"
+
+Your error might look like this:
+```
+Failed to load database 'neo4j': Not a valid Neo4j archive: reading from stdin
+Load failed for databases: 'neo4j'
+Load failed for databases: 'neo4j'
+```
+
+The issue is that with neo4j-v5 the database dump to stdout is partially broken. The solution is to run the following.
+
+First run:
+
+```
+docker-compose run neo4j-v5 neo4j-admin database dump neo4j
+```
+
+On docker desktop then navigate to the most recent container run and navigate to the `Inspect` tab. From there find the entry `Mounts/data` and click on the link button. From there navigate to the `dumps` folder and save the neo4j.dump file. 
+
+We can then now properly load the dump file as we would normally.
+
+```
+dokku neo4j:import my-app < ./neo4j.dump
+```
