@@ -33,25 +33,24 @@ The actual issue is that you've probably built the image on a different platform
 
 ## "Failed to load database 'neo4j'"
 
-Your error might look like this:
+Your error might look like this while loading your neo4j dump onto dokku:
 ```
 Failed to load database 'neo4j': Not a valid Neo4j archive: reading from stdin
 Load failed for databases: 'neo4j'
 Load failed for databases: 'neo4j'
 ```
 
-The issue is that with neo4j-v5 the database dump to stdout is partially broken. The solution is to run the following.
-
-First run:
+The issue is that with neo4j-v5 the database dump to stdout is partially broken using docker-compose. 
+The solution is to run the following.
 
 ```
 docker-compose run neo4j-v5 neo4j-admin database dump neo4j
 ```
 
-On docker desktop then navigate to the most recent container run and navigate to the `Inspect` tab. From there find the entry `Mounts/data` and click on the link button. From there navigate to the `dumps` folder and save the neo4j.dump file. 
+On docker desktop then navigate to the most recent container run and navigate to the `Inspect` tab. Then find the entry `Mounts/data` and click on the link button. From there navigate to the `dumps` folder and save the neo4j.dump file. 
 
 We can then now properly load the dump file as we would normally.
 
 ```
-dokku neo4j:import my-app < ./neo4j.dump
+dokku neo4j:import service < ./neo4j.dump
 ```
