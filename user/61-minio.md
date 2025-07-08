@@ -20,12 +20,12 @@ services:
       target: 9000
       x-kubernetes:
         annotations:
-          maayanlab.cloud/ingress: https://s3.yourapp.dev.maayanlab.cloud
+          maayanlab.cloud/ingress: https://s3.yourapp.k8s.dev.maayanlab.cloud
     - source: 9001
       target: 9001
       x-kubernetes:
         annotations:
-          maayanlab.cloud/ingress: https://console.s3.yourapp.dev.maayanlab.cloud
+          maayanlab.cloud/ingress: https://console.s3.yourapp.k8s.dev.maayanlab.cloud
     volumes:
     - yourapp-minio-data:/data
 
@@ -54,7 +54,7 @@ The database will be accessible at the hostname corresponding to your service na
       environment:
       # so your app container goes to the right location, **NOT localhost**
       - S3_URL=http://minio:${MINIO_ROOT_PASSWORD}$@yourapp-minio:9000/yourbucket
-      - PUBLIC_S3_URL=https://s3.yourapp.dev.maayanlab.cloud
+      - PUBLIC_S3_URL=https://s3.yourapp.k8s.dev.maayanlab.cloud
   ```
 - `app.py`:
   ```python

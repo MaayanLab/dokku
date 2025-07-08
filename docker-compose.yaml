@@ -1,12 +1,12 @@
 services:
-  app:
+  k8s-docs-app:
     build: .
-    image: maayanlab/dev:0.1.0
+    image: maayanlab/k8s-docs:0.1.0
     ports:
     - 80
     x-kubernetes:
       annotations:
-        maayanlab.cloud/ingress: https://dev.maayanlab.cloud
+        maayanlab.cloud/ingress: https://docs.k8s.dev.maayanlab.cloud
 
 x-kubernetes:
-  name: app
+  name: k8s-docs

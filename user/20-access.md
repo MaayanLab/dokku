@@ -34,7 +34,7 @@ The lab administrator can, using your github username, give you access to the cl
 Once your access has been confirmed by a system administrator, you should be able to successfully configure access to the cluster with the following command:
 
 ```bash
-sshkube install -s dev.maayanlab.cloud -u your-github-username
+sshkube install -s ssh.k8s.dev.maayanlab.cloud -u your-github-username
 ```
 
 This will report `Success` if it worked, if not, let us know so we can figure out why.

@@ -17,7 +17,7 @@ services:
       registry:/var/lib/registry
     x-kubernetes:
       annotations:
-        maayanlab.cloud/ingress: https://registry.dev.maayanlab.cloud
+        maayanlab.cloud/ingress: https://registry.k8s.dev.maayanlab.cloud
         nginx.ingress.kubernetes.io/auth-type: basic
         nginx.ingress.kubernetes.io/auth-secret: registry-basicauth
         nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - Maayan Lab'
