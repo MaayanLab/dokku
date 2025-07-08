@@ -1,8 +1,6 @@
-# Ma'ayan Lab Dokku Server
+# Ma'ayan Lab Kubernetes
 
-Currently running at <https://dokku.dev.maayanlab.cloud/>.
-
-This repository contains documentation for the Ma'ayan Lab Dokku Server. Files are just markdown, and [jupyter-book](https://jupyterbook.org/) is used to turn them into a webpage.
+This repository contains opinionated documentation for deploying to the Ma'ayan Lab Kubernetes Cluster. Files are just markdown, and [jupyter-book](https://jupyterbook.org/) is used to turn them into a webpage.
 
 While you can add new files to some of the directories, if you add new directories or new root-level files, they'll need to be added to `_toc.yml`.
 
@@ -21,13 +19,10 @@ npx http-server _build/html
 
 ## Deployment
 
-This can be deployed *with dokku itself*, see [dokku docs](./user/30-deploy.md) for that. But even without dokku it's just a matter of building the Dockerfile.
+This can be deployed directly to the Cluster, see [deploy docs](./user/50-deploy) for that, but essentially it's just:
 
 ```bash
-# Build docker file, a python builder builds the html
-#  and the final image is just an nginx-served static site
-docker build -t maayanlab/dokku .
-
-# nginx serves the static site on port 80
-docker run -p 80:80 -it maayanlab/dokku
+docker compose build
+docker compose push
+kube-compose up
 ```

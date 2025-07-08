@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Ma'ayan Lab Dokku Server
+title: Ma'ayan Lab Dev Cluster
 author: Ma'ayan Lab
 logo: _assets/logo.png
 
@@ -13,11 +13,11 @@ execute:
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
-    targetname: dokku.tex
+    targetname: docs.tex
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/maayanlab/dokku
+  url: https://github.com/maayanlab/dev
   branch: main
 
 # Add GitHub buttons to your book

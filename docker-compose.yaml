@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    image: maayanlab/dev:0.1.0
+    ports:
+    - 80
+    x-kubernetes:
+      annotations:
+        maayanlab.cloud/ingress: https://dev.maayanlab.cloud
+
+x-kubernetes:
+  name: app

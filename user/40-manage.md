@@ -1,61 +1,111 @@
-# Manage Dokku Deployments
+# Manage Applications with Docker Compose
 
-The following Dokku docs should prove helpful for managing dokku deployments:
+We recommend adopting docker and docker compose for your managing your app in production. Docker has [extensive documentation](https://docs.docker.com/) which you can refer to but here is a basic example.
 
-- [application-management](https://dokku.com/docs/deployment/application-management/)
-- [logs](https://dokku.com/docs/deployment/logs/)
-- [entering-containers](https://dokku.com/docs/processes/entering-containers/)
-- [process-management](https://dokku.com/docs/processes/process-management/)
+While docker compose can be use to run containers on your own system, kube compose works the same way but manages containers running remotely on the cluster. Get everything running on your own system first, and things should work when they get deployed to the cluster.
+
+## Example
+Make the following additions in your app directory:
+
+- `Dockerfile`: Use this define a container capable of running your app
+  ```Dockerfile
+  # this base image has python setup and ready to go
+  FROM python
+
+  # install dependencies
+  COPY requirements.txt /app/requirements.txt
+  RUN pip install -r /app/requirements.txt
+
+  # add source to app
+  COPY . /app
+  WORKDIR /app
+
+  # the port your app uses -- this is essential for dokku deployment
+  EXPOSE 5000
+
+  # what to do when the container starts
+  CMD gunicorn --bind 0.0.0.0:5000 app:app
+  ```
+- `docker-compose.yaml`: Manage potentially multiple containers for running your app
+  ```yaml
+  services:
+    # generally good practice to prefix service by your app name, change yourapp to your app's name
+    yourapp-app:
+      build: .
+      image: your-docker-username/yourapp-app:0.1.0
+      environment:
+      # gets this from your .env
+      - YOURAPP_WHAT
+      ports:
+      # 5000 (your system, i.e. http://localhost:5000) maps to the container's port 5000
+      - 5000:5000
+      x-kubernetes:
+        annotations:
+          # this is where it will be deployed when it is published
+          maayanlab.cloud/ingress: https://yourapp.dev.maayanlab.cloud
+  x-kubernetes:
+    name: yourapp
+  ```
+- `README.md`
+  ```md
+  ...
+
+  ## Deploy
+  `docker compose build # build the container`
+  `docker compose up # verify that it works the way you expect at http://localhost:5000`
+  ```
+
+## App management
+
+## Build the container for a service
+
+```bash
+docker compose build yourapp-app
+```
+
+## Run your app's services
+
+```bash
+# -d flag runs them in the background
+docker compose up -d
+```
 
 ## Logging
 
 ```bash
-# help for dokku logs command
-dokku logs --help
-
-# show logs for an app
-dokku logs my-app
+# get logs of a service
+docker compose logs yourapp-app
 ```
 
 ## Process management
 
 ```bash
-# restart an app
-dokku ps:restart my-app
+# restart a service
+docker compose restart yourapp-app
 
-# stop an app
-dokku ps:stop my-app
+# stop a service
+docker compose stop yourapp-app
 
-# start an app that was stopped
-dokku ps:start my-app
+# start a service that was stopped
+docker compose start yourapp-app
 ```
 
 ## Manual container inspection
 
 ```bash
-# open a shell in your running app in production for debugging
-dokku enter my-app
+# open a shell in your running app for debugging
+docker compose exec -it yourapp-app /bin/sh
 ```
 
-## Renaming an app
+## Stopping your app
 
 ```bash
-# remove previous links if they are present
-dokku traefik:disable my-app-oldname
-#dokku neo4j:unlink db my-app-oldname
-#...
+docker compose down
 
-# rename
-dokku apps:rename my-app-oldname my-app-newname
-
-# re-link
-dokku traefik:enable my-app-newname
-#dokku neo4j:link db my-app-newname
+# if you have persistent data, you can opt-in to remove them as well
+docker compose down -v
 ```
 
-## Removing an app
+## Next Steps
 
-```bash
-dokku traefik:disable my-app
-dokku apps:destroy my-app
-```
+[Deploy](./50-deploy.md) your code to production.
