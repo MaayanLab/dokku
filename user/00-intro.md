@@ -7,3 +7,5 @@ This section of the docs covers the user-side usage of the public ma'ayanlab clu
 3. [Setup your codebase](./30-setup-code.md) to be deployable.
 4. [Manage](./40-manage.md) docker compose apps.
 5. [Deploy](./50-deploy.md) your code to production.
+6. [Common services](./60-services.md) you can pair with your app.
+7. [Common questions](./70-common-issues.md) & issues you may experience, answered.
