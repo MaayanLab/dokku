@@ -16,13 +16,13 @@ services:
     # this should be in your .env file and set to a long random string
     - MINIO_ROOT_PASSWORD
     ports:
-    - source: 9000
-      target: 9000
+    - target: 9000
+      published: 9000
       x-kubernetes:
         annotations:
           maayanlab.cloud/ingress: https://s3.yourapp.k8s.dev.maayanlab.cloud
-    - source: 9001
-      target: 9001
+    - target: 9001
+      published: 9001
       x-kubernetes:
         annotations:
           maayanlab.cloud/ingress: https://console.s3.yourapp.k8s.dev.maayanlab.cloud
@@ -33,7 +33,7 @@ volumes:
   yourapp-minio-data:
     x-kubernetes:
       size: 1Gi
-      class: local-storage
+      class: local-path
 ```
 
 

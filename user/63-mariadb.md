@@ -23,7 +23,7 @@ volumes:
   yourapp-mariadb-data:
     x-kubernetes:
       size: 1Gi
-      class: local-storage
+      class: local-path
 ```
 
 ## Transfering your local database to the production database
