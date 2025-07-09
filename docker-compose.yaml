@@ -1,7 +1,9 @@
 services:
   k8s-docs-app:
     build: .
-    image: maayanlab/k8s-docs:0.2.1
+    image: maayanlab/k8s-docs:0.2.2
+    pull_policy: missing
+    restart: unless-stopped
     ports:
     - 80
     x-kubernetes:
