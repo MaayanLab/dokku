@@ -4,8 +4,8 @@
 
 These opinionated docs try to capture the main parts necessary for administration (server maintenance side of things) and users side (people deploying apps) respectively.
 
-- [User Guide](./user/index.md)
-- [Administrator Guide](./administration/index.md)
+- [User Guide](./00-user/index.md)
+- [Administrator Guide](./50-administration/index.md)
 
 ## Contributions
 
