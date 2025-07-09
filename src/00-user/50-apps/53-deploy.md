@@ -42,7 +42,3 @@ docker compose push yourapp-app
 ```
 
 `kube-compose version` makes it easy to version your containers with [semver](https://semver.org/).
-
-## Next Steps
-
-Check what additional [services](../60-services/index.md) you can deploy alongside your app, such as databases.

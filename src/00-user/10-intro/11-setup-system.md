@@ -58,7 +58,3 @@ Besides github which you should have already set up by now. You'll also need an 
 ```bash
 docker login
 ```
-
-## Next Steps
-
-[Get access](./12-access.md) from an administrator.

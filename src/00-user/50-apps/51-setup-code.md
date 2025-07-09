@@ -75,7 +75,3 @@ git remote add origin git@github.com:org-or-your-username/your-project-repo
 git push -u origin main
 # NOTE: some systems use `master` instead of main
 ```
-
-## Next Steps
-
-[Manage](./52-manage.md) docker compose apps.

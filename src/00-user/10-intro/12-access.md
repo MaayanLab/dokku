@@ -38,8 +38,3 @@ sshkube install -s ssh.k8s.dev.maayanlab.cloud -u your-github-username
 ```
 
 This will report `Success` if it worked, if not, let us know so we can figure out why.
-
-## Next Steps
-
-- [Launch containers](../20-containers/index.md) on the cluster.
-- [Start developing apps](../50-apps/index.md) for the cluster.

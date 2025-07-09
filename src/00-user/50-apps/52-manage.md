@@ -105,7 +105,3 @@ docker compose down
 # if you have persistent data, you can opt-in to remove them as well
 docker compose down -v
 ```
-
-## Next Steps
-
-[Deploy](./53-deploy.md) your code to production.
