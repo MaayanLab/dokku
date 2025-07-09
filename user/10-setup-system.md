@@ -20,7 +20,7 @@ brew install git pipx kubernetes-cli helm
 brew install --cask docker-desktop
 
 pipx ensurepath
-pipx install 'sshkube@ssh+https://github.com/u8sand/sshkube' 'kube-compose@ssh+https://github.com/u8sand/kube-compose'
+pipx install sshkube kube-compose
 ```
 
 ### Linux
@@ -32,7 +32,7 @@ sudo apt-get install -y git docker docker-compose pipx kubectl
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 pipx ensurepath
-pipx install 'sshkube@ssh+https://github.com/u8sand/sshkube' 'kube-compose@ssh+https://github.com/u8sand/kube-compose'
+pipx install sshkube kube-compose
 ```
 
 ### Windows
@@ -46,7 +46,7 @@ scoop bucket add main
 scoop install git docker docker-compose pipx kubectl helm
 
 pipx ensurepath
-pipx install 'sshkube@ssh+https://github.com/u8sand/sshkube' 'kube-compose@ssh+https://github.com/u8sand/kube-compose'
+pipx install sshkube kube-compose
 ```
 
 ## Create a Github Account
