@@ -9,6 +9,8 @@ services:
   # ...
   yourapp-neo4j:
     image: neo4j:4.4.8-community
+    pull_policy: missing
+    restart: unless-stopped
     environment:
     - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
     # this should be in your .env file and set to a long random string

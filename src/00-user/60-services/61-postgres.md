@@ -1,26 +1,26 @@
-# MariaDB (RDMS)
+# PostgreSQL (RDMS)
 
-[Mariadb](https://mariadb.org/) is a good and mature open source relational database and drop-in replacement for MySQL.
+[Postgres](https://www.postgresql.org/) is a good and mature open source relational database.
 
-## Adding mariadb to your app's docker-compose.yaml
+## Adding postgres to your app's docker-compose.yaml
 
 ```yaml
 services:
   # ...
-  yourapp-mariadb:
-    image: mariadb:11
+  yourapp-postgres:
+    image: postgres:17
+    pull_policy: missing
+    restart: unless-stopped
     environment:
-    - MARIADB_DATABASE=mariadb
-    - MARIADB_USER=mariadb
     # this should be in your .env file and set to a long random string
-    - MARIADB_PASSWORD
+    - POSTGRES_PASSWORD
     ports:
-    - 3306:3306
+    - 5432:5432
     volumes:
-    - yourapp-mariadb-data:/var/lib/mysql
+    - yourapp-postgres-data:/var/lib/postgresql/data
 
 volumes:
-  yourapp-mariadb-data:
+  yourapp-postgres-data:
     x-kubernetes:
       size: 1Gi
       class: local-path
@@ -30,12 +30,12 @@ volumes:
 
 ```bash
 # stream dump output directly to pg_restore on db runnning in cluster
-docker compose exec -t yourapp-mariadb mariadb-dump mariadb \
-  | sshkube run kube-compose exec -i yourapp-mariadb mysql
+docker compose exec -t yourapp-postgres pg_dump -Fc --no-acl --no-owner -h localhost -U postgres -w postgres \
+  | sshkube run kube-compose exec -i yourapp-postgres pg_restore -Fc -h localhost -U postgres -w postgres -
 
 # you can of course go the other way around as well if you needed to get information from production
-sshkube run kube-compose exec -t yourapp-mariadb mariadb-dump mariadb \
-  | docker compose exec -i yourapp-mariadb mysql
+sshkube run kube-compose exec -t yourapp-postgres pg_dump -Fc --no-acl --no-owner -h localhost -U postgres -w postgres \
+  | docker compose exec -i yourapp-postgres pg_restore -Fc -h localhost -U postgres -w postgres -
 ```
 
 ## Accessing the database in your app
@@ -45,7 +45,7 @@ The database will be accessible at the hostname corresponding to your service na
 - `.env`:
   ```
   # so you can test accessing the database locally
-  DATABASE_URL=mariadb://mariadb:YOURMARIADB_PASSWORD@localhost:5432/mariadb
+  DATABASE_URL=postgres://postgres:YOURPOSTGRES_PASSWORD@localhost:5432/postgres
   ```
 - `docker-compose.yaml`:
   ```yaml
@@ -53,18 +53,18 @@ The database will be accessible at the hostname corresponding to your service na
     yourapp-app:
       environment:
       # so your app container goes to the right location, **NOT localhost**
-      - DATABASE_URL=mariadb://mariadb:${MARIADB_PASSWORD}$@yourapp-mariadb:5432/mariadb
+      - DATABASE_URL=postgres://postgres:${POSTGRES_PASSWORD}$@yourapp-postgres:5432/postgres
   ```
 - `app.py`:
   ```python
   import os
-  import mysql.connector
+  import psycopg2
 
   DATABASE_URL = os.environ.get('DATABASE_URL')
   assert DATABASE_URL is not None, 'Missing DATABASE_URL environment variable to connect to the database'
 
   # connect to db
-  conn = mysql.connector.connect(DATABASE_URL)
+  conn = psycopg2.connect(DATABASE_URL)
 
   # ... use conn in your app to build queries ...
 

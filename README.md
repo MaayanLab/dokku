@@ -10,11 +10,15 @@ While you can add new files to some of the directories, if you add new directori
 # install python dependencies
 pip install -r requirements.txt
 
-# build html
-jupyter-book build .
+# remove old build
+rm -r src/_build
+# generate table of contents
+jupyter-book toc from-project src > src/_toc.yml
+# build
+jupyter-book build src
 
 # the resulting book is in _build/html, the html can be viewed with any static web browser (including just opening _build/html/index.html in your browser)
-npx http-server _build/html
+npx http-server src/_build/html
 ```
 
 ## Deployment

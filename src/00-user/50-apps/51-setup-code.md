@@ -25,22 +25,22 @@ We'll create an example python flask app which we'll set up for production throu
     app.run(host='127.0.0.1', port=5000)
   ```
 - `.env.example`
-  ```txt
+  ```
   YOURAPP_WHAT=world
   ```
 - `.env`
-  ```txt
+  ```
   # this doesn't get pushed, it can have things like
   #  private API keys
   YOURAPP_WHAT=world
   ```
 - `.gitignore`
-  ```txt
+  ```
   .DS_Store
   .env
   ```
 - `requirements.txt`
-  ```txt
+  ```
   python-dotenv
   flask
   gunicorn
@@ -78,4 +78,4 @@ git push -u origin main
 
 ## Next Steps
 
-[Manage](./40-manage.md) docker compose apps.
+[Manage](./52-manage.md) docker compose apps.

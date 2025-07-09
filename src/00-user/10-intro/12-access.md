@@ -41,4 +41,5 @@ This will report `Success` if it worked, if not, let us know so we can figure ou
 
 ## Next Steps
 
-[Setup your codebase](./30-setup-code.md) to be deployable.
+- [Launch containers](../20-containers/index.md) on the cluster.
+- [Start developing apps](../50-apps/index.md) for the cluster.

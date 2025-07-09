@@ -10,6 +10,8 @@ services:
   # ...
   yourapp-minio:
     image: quay.io/minio/minio
+    pull_policy: missing
+    restart: unless-stopped
     command: server /data --console-address ":9001"
     environment:
     - MINIO_ROOT_USER=minio

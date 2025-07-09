@@ -61,4 +61,4 @@ docker login
 
 ## Next Steps
 
-[Get access](./20-access.md) from an administrator.
+[Get access](./12-access.md) from an administrator.
