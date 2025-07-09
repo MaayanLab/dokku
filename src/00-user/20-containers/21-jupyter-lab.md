@@ -4,6 +4,8 @@
 
 Our cluster has lots of storage and memory and runs 24/7 so it might be a more ideal place to run experiments than on your laptop.
 
+See [tests/jupyter](https://github.com/MaayanLab/dokku/tree/kube-compose/tests/jupyter) for complete template.
+
 ## Creating a jupyter lab service
 
 In a blank directory, create a file:

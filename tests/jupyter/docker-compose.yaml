@@ -1,0 +1,19 @@
+services:
+  jupyter-lab:
+    image: quay.io/jupyter/base-notebook
+    pull_policy: missing
+    restart: unless-stopped
+    command: start-notebook.py --NotebookApp.token=''
+    ports:
+    - 8888:8888
+    volumes:
+    - jupyter-data:/home/jovyan/work
+
+volumes:
+  jupyter-data:
+    x-kubernetes:
+      size: 1Gi
+      class: local-path
+
+x-kubernetes:
+  name: jupyter

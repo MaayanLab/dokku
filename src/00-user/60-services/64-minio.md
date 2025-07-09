@@ -2,6 +2,7 @@
 
 [MinIO](https://min.io/) offers open source S3 compatible object storage, thier solution is very advanced and can scale the way AWS native S3 can across many nodes, alternatively it works just as well on a single system with the added benefit of coming with a easy-to-use user interface that can also be used to manage access controls.
 
+See [tests/minio](https://github.com/MaayanLab/dokku/tree/kube-compose/tests/minio) for complete template.
 
 ## Adding minio to your app's docker-compose.yaml
 
@@ -63,14 +64,14 @@ The database will be accessible at the hostname corresponding to your service na
   import os
   import io
   import json
+  import dotenv
   from minio import Minio
   from urllib.parse import urlparse
 
-  S3_URL = os.environ.get('S3_URL')
-  assert S3_URL is not None, 'Missing S3_URL environment variable to connect to the s3 server'
+  dotenv.load_dotenv()
 
   # connect to db
-  S3_URL_parsed = urlparse(S3_URL)
+  S3_URL_parsed = urlparse(os.environ['S3_URL'])
   s3 = Minio(
     f"{S3_URL_parsed.hostname}:{S3_URL_parsed.port}",
     access_key=f"{S3_URL_parsed.username}",
@@ -85,15 +86,15 @@ The database will be accessible at the hostname corresponding to your service na
     # enable anonymous downloading of files in this bucket
     s3.set_bucket_policy(bucket, json.dumps({
       'Version': '2012-10-17',
-      'Statement': [{
-        'Effect': 'Allow', 'Principial': {'AWS': '*'}, 'Action': 's3:GetBucketLocation', 'Resource': f"arn:aws:s3:::{bucket}"
-        'Effect': 'Allow', 'Principial': {'AWS': '*'}, 'Action': 's3:GetObject', 'Resource': f"arn:aws:s3:::{bucket}/*"
-      }],
+      'Statement': [
+        {'Effect': 'Allow', 'Principial': {'AWS': '*'}, 'Action': 's3:GetBucketLocation', 'Resource': f"arn:aws:s3:::{bucket}"},
+        {'Effect': 'Allow', 'Principial': {'AWS': '*'}, 'Action': 's3:GetObject', 'Resource': f"arn:aws:s3:::{bucket}/*"},
+      ],
     }))
     # create a file
     content = b'Hello World!'
     s3.put_object(bucket, 'test.txt', io.BytesIO(content), len(content), content_type='plain/text')
-    print(f"File available at <{PUBLIC_S3_URL}/test.txt>")
+    print(f"File available at <{os.environ['PUBLIC_S3_URL']}/test.txt>")
 
   # ... use s3 in your app deal with files ...
   ```

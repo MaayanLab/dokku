@@ -1,0 +1,28 @@
+services:
+  yourapp-app:
+    environment:
+    # so your app container goes to the right location, **NOT localhost**
+    - NEO4J_URL=bolt://neo4j:${NEO4J_PASSWORD}$@yourapp-neo4j:7687
+
+  yourapp-neo4j:
+    image: neo4j:4.4.8-community
+    pull_policy: missing
+    restart: unless-stopped
+    environment:
+    - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+    # this should be in your .env file and set to a long random string
+    - NEO4J_PASSWORD
+    ports:
+    - 7687:7687
+    - 7474:7474
+    volumes:
+    - yourapp-neo4j-data:/data
+
+volumes:
+  yourapp-neo4j-data:
+    x-kubernetes:
+      size: 1Gi
+      class: local-path
+
+x-kubernetes:
+  name: yourapp-neo4j

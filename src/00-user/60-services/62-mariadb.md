@@ -2,6 +2,8 @@
 
 [Mariadb](https://mariadb.org/) is a good and mature open source relational database and drop-in replacement for MySQL.
 
+See [tests/mariadb](https://github.com/MaayanLab/dokku/tree/kube-compose/tests/mariadb) for complete template.
+
 ## Adding mariadb to your app's docker-compose.yaml
 
 ```yaml
@@ -60,13 +62,13 @@ The database will be accessible at the hostname corresponding to your service na
 - `app.py`:
   ```python
   import os
+  import dotenv
   import mysql.connector
-
-  DATABASE_URL = os.environ.get('DATABASE_URL')
-  assert DATABASE_URL is not None, 'Missing DATABASE_URL environment variable to connect to the database'
+  
+  dotenv.load_dotenv()
 
   # connect to db
-  conn = mysql.connector.connect(DATABASE_URL)
+  conn = mysql.connector.connect(os.environ['DATABASE_URL'])
 
   # ... use conn in your app to build queries ...
 

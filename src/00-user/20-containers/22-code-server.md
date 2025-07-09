@@ -4,6 +4,8 @@
 
 Our cluster has lots of storage and memory and runs 24/7 so it might be a more ideal place to run experiments than on your laptop.
 
+See [tests/code](https://github.com/MaayanLab/dokku/tree/kube-compose/tests/code) for complete template.
+
 ## Creating a code server service
 
 In a blank directory, create a file:

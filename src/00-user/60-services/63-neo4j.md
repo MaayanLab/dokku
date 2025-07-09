@@ -2,6 +2,8 @@
 
 [Neo4J](https://neo4j.com/) is an open source and enterprise graph database.
 
+See [tests/neo4j](https://github.com/MaayanLab/dokku/tree/kube-compose/tests/neo4j) for complete template.
+
 ## Adding neo4j to your app's docker-compose.yaml
 
 ```yaml
@@ -68,13 +70,13 @@ The database will be accessible at the hostname corresponding to your service na
 - `app.py`:
   ```python
   import os
+  import dotenv
   from py2neo import Graph
 
-  NEO4J_URL = os.environ.get('NEO4J_URL')
-  assert NEO4J_URL is not None, 'Missing NEO4J_URL environment variable to connect to the database'
+  dotenv.load_dotenv()
 
   # connect to db
-  graph = Graph(NEO4J_URL)
+  graph = Graph(os.environ['NEO4J_URL'])
 
   # ... use graph in your app to build queries ...
   ```

@@ -1,0 +1,18 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    pull_policy: missing
+    restart: unless-stopped
+    ports:
+    - 8443:8443
+    volumes:
+    - code-data:/config
+
+volumes:
+  code-data:
+    x-kubernetes:
+      size: 1Gi
+      class: local-path
+
+x-kubernetes:
+  name: code

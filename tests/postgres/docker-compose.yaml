@@ -1,0 +1,25 @@
+services:
+  yourapp-app:
+    environment:
+    # so your app container goes to the right location, **NOT localhost**
+    - DATABASE_URL=postgres://postgres:${POSTGRES_PASSWORD}$@yourapp-postgres:5432/postgres
+  yourapp-postgres:
+    image: postgres:17
+    pull_policy: missing
+    restart: unless-stopped
+    environment:
+    # this should be in your .env file and set to a long random string
+    - POSTGRES_PASSWORD
+    ports:
+    - 5432:5432
+    volumes:
+    - yourapp-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  yourapp-postgres-data:
+    x-kubernetes:
+      size: 1Gi
+      class: local-path
+
+x-kubernetes:
+  name: yourapp-postgres

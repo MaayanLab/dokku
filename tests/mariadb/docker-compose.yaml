@@ -1,0 +1,28 @@
+services:
+  yourapp-app:
+    environment:
+    # so your app container goes to the right location, **NOT localhost**
+    - DATABASE_URL=mariadb://mariadb:${MARIADB_PASSWORD}$@yourapp-mariadb:5432/mariadb
+
+  yourapp-mariadb:
+    image: mariadb:11
+    pull_policy: missing
+    restart: unless-stopped
+    environment:
+    - MARIADB_DATABASE=mariadb
+    - MARIADB_USER=mariadb
+    # this should be in your .env file and set to a long random string
+    - MARIADB_PASSWORD
+    ports:
+    - 3306:3306
+    volumes:
+    - yourapp-mariadb-data:/var/lib/mysql
+
+volumes:
+  yourapp-mariadb-data:
+    x-kubernetes:
+      size: 1Gi
+      class: local-path
+
+x-kubernetes:
+  name: yourapp-mariadb

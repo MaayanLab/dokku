@@ -2,6 +2,8 @@
 
 [Postgres](https://www.postgresql.org/) is a good and mature open source relational database.
 
+See [tests/postgres](https://github.com/MaayanLab/dokku/tree/kube-compose/tests/postgres) for complete template.
+
 ## Adding postgres to your app's docker-compose.yaml
 
 ```yaml
@@ -58,13 +60,13 @@ The database will be accessible at the hostname corresponding to your service na
 - `app.py`:
   ```python
   import os
+  import dotenv
   import psycopg2
 
-  DATABASE_URL = os.environ.get('DATABASE_URL')
-  assert DATABASE_URL is not None, 'Missing DATABASE_URL environment variable to connect to the database'
+  dotenv.load_dotenv()
 
   # connect to db
-  conn = psycopg2.connect(DATABASE_URL)
+  conn = psycopg2.connect(os.environ['DATABASE_URL'])
 
   # ... use conn in your app to build queries ...
 
