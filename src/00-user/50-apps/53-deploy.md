@@ -16,7 +16,6 @@ docker compose push
 sshkube run kube-compose up
 
 # you could alternatively setup your shell with sshkube and just use kube-compose directly
-#  subsequent discussions assume sshkube is initialized
 $(sshkube init)
 kube-compose up
 ``` 
@@ -24,14 +23,14 @@ kube-compose up
 ## Updating your deployment
 Just like with docker compose, you can update by running `up` again. It's good practice, however, to make sure that your update won't overwrite something you didn't expect by first running:
 ```bash
-kube-compose diff
+sshkube run kube-compose diff
 ```
 
 ## Rolling back your deployment
 
 If you broke something after an update and want to rollback quickly, you can use:
 ```bash
-kube-compose rollback
+sshkube run kube-compose rollback
 ```
 
 But note that this won't work if you don't maintain separate versions of your docker container, so it's recommended that you do whenver you push. E.g. when updating your container use:

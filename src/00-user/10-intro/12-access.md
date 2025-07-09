@@ -38,3 +38,8 @@ sshkube install -s ssh.k8s.dev.maayanlab.cloud -u your-github-username
 ```
 
 This will report `Success` if it worked, if not, let us know so we can figure out why.
+
+## Using sshkube
+sshkube adds some environment flags so that you can access the cluster. `sshkube run somecommand` will ensure that `somecommand` runs with the necessary environment flags. It's also possible to set up your current shell with `$(sshkube init)` after which you can use the commands directly.
+
+In subsequent articles we always use `sshkube run` for simplicity, but your commands can become simpler if you activate your shell with `$(sshkube init)`.

@@ -52,7 +52,7 @@ docker compose down
 In the same directory, you can launch the same jupyter lab on the cluster with:
 
 ```bash
-kube-compose up
+sshkube run kube-compose up
 ```
 
 Now that it's running on the cluster, to access it you'll need to port forward:
