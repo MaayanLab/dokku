@@ -13,7 +13,7 @@ In a blank directory, create a file:
   ```yaml
   services:
     code-server:
-      image: lscr.io/linuxserver/code-server:latest
+      image: maayanlab/linuxserver-code-server:1.0.0
       pull_policy: missing
       restart: unless-stopped
       ports:

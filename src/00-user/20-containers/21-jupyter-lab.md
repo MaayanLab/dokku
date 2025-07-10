@@ -13,7 +13,7 @@ In a blank directory, create a file:
   ```yaml
   services:
     jupyter-lab:
-      image: quay.io/jupyter/base-notebook
+      image: maayanlab/jupyter-base-notebook:1.0.0
       pull_policy: missing
       restart: unless-stopped
       command: start-notebook.py --NotebookApp.token=''
