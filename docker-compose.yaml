@@ -1,7 +1,7 @@
 services:
   k8s-docs-app:
     build: .
-    image: maayanlab/k8s-docs:0.2.4
+    image: maayanlab/k8s-docs:0.2.5
     pull_policy: missing
     restart: unless-stopped
     ports:

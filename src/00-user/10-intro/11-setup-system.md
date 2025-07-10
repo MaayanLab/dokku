@@ -42,11 +42,14 @@ It's recommended that you install [scoop](https://scoop.sh/) on your windows mac
 
 Afer installing scoop, in a terminal, run the following commands:
 ```bash
-scoop bucket add main
-scoop install git docker docker-compose pipx kubectl helm
+scoop install git docker docker-compose python pipx kubectl helm
 
 pipx ensurepath
+# reload your terminal
 pipx install sshkube kube-compose
+
+# in an administrator terminal run
+dockerd --register-service
 ```
 
 ## Create a Github Account
