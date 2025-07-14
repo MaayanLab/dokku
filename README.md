@@ -1,5 +1,9 @@
 # Ma'ayan Lab Dokku Server
 
+**DEPRECATED**: This is now deprecated and should be replaced with <https://github.com/MaayanLab/k8s-docs>.
+
+## Description
+
 Currently running at <https://dokku.dev.maayanlab.cloud/>.
 
 This repository contains documentation for the Ma'ayan Lab Dokku Server. Files are just markdown, and [jupyter-book](https://jupyterbook.org/) is used to turn them into a webpage.
