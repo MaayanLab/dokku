@@ -32,6 +32,8 @@ Make the following additions in your app directory:
     # generally good practice to prefix service by your app name, change yourapp to your app's name
     yourapp-app:
       build: .
+      # make sure it's built for the cpu architecture running on our cluster
+      platform: linux/amd64
       image: your-docker-username/yourapp-app:0.1.0
       environment:
       # gets this from your .env
